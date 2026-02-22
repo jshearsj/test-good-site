@@ -32,33 +32,15 @@
         footer a { color: #a7f3d0; text-decoration: underline; margin: 0 12px; }
         footer a:hover { color: white; }
 
-        /* Cookie Banner */
-        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #1f2937; color: white; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; z-index: 1000; font-size: 14px; }
-        .cookie-banner p { max-width: 700px; line-height: 1.5; }
-        .cookie-banner a { color: #6ee7b7; }
-        .cookie-btns { display: flex; gap: 8px; flex-shrink: 0; }
-        .cookie-btns button { padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 13px; }
-        .cookie-accept { background: #059669; color: white; }
-        .cookie-decline { background: transparent; color: #d1d5db; border: 1px solid #6b7280 !important; }
-        .cookie-settings { background: transparent; color: #d1d5db; text-decoration: underline; border: none; }
     </style>
 
-    <!-- Only Google Analytics (one analytics tracker - realistic for a small business) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FAKEGOOD1"></script>
-    <script>
+    <!-- Google Analytics — tagged so ClearConsent banner blocks until consent -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FAKEGOOD1" data-cc-category="analytics"></script>
+    <script data-cc-category="analytics">
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-FAKEGOOD1');
-    </script>
-
-    <!-- GPC Support -->
-    <script>
-        if (navigator.globalPrivacyControl) {
-            // Respect Global Privacy Control signal
-            window['ga-disable-G-FAKEGOOD1'] = true;
-            console.log('GPC detected: analytics disabled');
-        }
     </script>
 </head>
 <body>
@@ -67,7 +49,7 @@
         <nav>
             <a href="#">Shop</a>
             <a href="#">About</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="https://clearconsent.app/policy/hosted/321ad55fa54b">Privacy Policy</a>
             <a href="#">Contact</a>
         </nav>
     </header>
@@ -120,39 +102,14 @@
     <footer>
         <p>&copy; 2024 GreenLeaf Wellness. All rights reserved.</p>
         <p style="margin-top: 12px;">
-            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="https://clearconsent.app/policy/hosted/321ad55fa54b">Privacy Policy</a>
             <a href="#" class="do-not-sell">Do Not Sell My Personal Information</a>
             <a href="#">Terms of Service</a>
             <a href="#">Contact</a>
         </p>
     </footer>
 
-    <!-- Cookie Consent Banner -->
-    <div class="cookie-banner" id="cookie-consent-banner">
-        <p>We use cookies to improve your experience. We use one analytics cookie (Google Analytics) to understand how visitors use our site.
-           <a href="privacy-policy.html">Read our Privacy Policy</a>.</p>
-        <div class="cookie-btns">
-            <button class="cookie-decline" onclick="declineCookies()">Decline</button>
-            <button class="cookie-accept" onclick="acceptCookies()">Accept All</button>
-        </div>
-    </div>
-
-    <script>
-        // Simple cookie consent logic
-        function acceptCookies() {
-            document.getElementById('cookie-consent-banner').style.display = 'none';
-            localStorage.setItem('cookie-consent', 'accepted');
-        }
-        function declineCookies() {
-            document.getElementById('cookie-consent-banner').style.display = 'none';
-            localStorage.setItem('cookie-consent', 'declined');
-            // Disable analytics
-            window['ga-disable-G-FAKEGOOD1'] = true;
-        }
-        // Hide banner if already consented
-        if (localStorage.getItem('cookie-consent')) {
-            document.getElementById('cookie-consent-banner').style.display = 'none';
-        }
-    </script>
+    <!-- ClearConsent Cookie Banner -->
+    <script src="https://clearconsent.app/banner/1/1.js" defer></script>
 </body>
 </html>
